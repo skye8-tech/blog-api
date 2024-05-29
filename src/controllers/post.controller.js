@@ -2,6 +2,7 @@ const logger = require("../config/logger.config");
 const Post = require("../models/Post");
 const User = require("../models/User");
 const cloudinary = require("../config/cloudinary.config");
+const fs = require("node:fs");
 
 module.exports = {
   create: async (req, res) => {
@@ -13,6 +14,15 @@ module.exports = {
         .then(async (cloud_image) => {
           logger.info("[SUCCESS-UPLOAD]: CLOUDINARY", cloud_image);
           const image = cloud_image.secure_url;
+
+          // Delete the file from the server
+          fs.unlink(req.file.path, (err) => {
+            if (err) {
+              logger.error("Failed to delete local file:", err);
+            } else {
+              logger.info("Local file deleted successfully");
+            }
+          });
           try {
             const post = new Post({
               ...req.body,
@@ -42,6 +52,7 @@ module.exports = {
 
   getAll: async (req, res) => {
     await Post.find({})
+      .populate("authorId comments likes")
       .lean()
       .then((result) => res.status(200).json(result))
       .catch((err) => res.status(503).json(err));
@@ -50,6 +61,7 @@ module.exports = {
   getOne: async (req, res) => {
     try {
       await Post.findOne({ _id: req.params.post_id })
+        .populate("authorId comments likes")
         .lean()
         .then((result) => {
           if (result) {
