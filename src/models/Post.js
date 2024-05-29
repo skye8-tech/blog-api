@@ -14,9 +14,8 @@ const postSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
-      default: "61af868370c83eed2d5a56b5",
     },
-    cooments: [
+    comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
