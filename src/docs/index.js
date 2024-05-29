@@ -21,7 +21,7 @@ const apiV1 = {
   },
   servers: [
     {
-      url: "https://blogapibase.onrender.com/v1/",
+      url: "https://blog-api-zk5m.onrender.com/v1/",
       description: "Production Server",
     },
     {
