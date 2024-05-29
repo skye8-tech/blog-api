@@ -52,10 +52,15 @@ module.exports = {
 
   getAll: async (req, res) => {
     await Post.find({})
-      .populate("authorId comments likes")
       .lean()
-      .then((result) => res.status(200).json(result))
-      .catch((err) => res.status(503).json(err));
+      .then((result) => {
+        logger.log(result);
+        return res.status(200).json(result);
+      })
+      .catch((err) => {
+        logger.error(err);
+        return res.status(503).json(err);
+      });
   },
 
   getOne: async (req, res) => {
