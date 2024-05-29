@@ -105,6 +105,7 @@ const getAllPosts = {
     401: serverResponses[401],
     404: serverResponses[404],
     500: serverResponses[500],
+    503: serverResponses[503],
   },
 };
 
