@@ -29,11 +29,6 @@ const userSchema = new mongoose.Schema(
         ref: "Job",
       },
     ],
-    role: {
-      type: String,
-      default: "user",
-      unique: true,
-    },
   },
   { timestamps: true }
 );

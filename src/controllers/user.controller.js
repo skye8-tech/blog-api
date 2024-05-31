@@ -26,6 +26,7 @@ module.exports = {
                   return res.status(201).json(result);
                 })
                 .catch((err) => {
+                  logger.error(err);
                   return res.status(501).json(err);
                 });
             });
