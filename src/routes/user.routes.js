@@ -14,7 +14,7 @@ userRouter
   .post("/auth/login", login)
   .get("/", verify, getAll)
   .get("/:user_id", verify, getOne)
-  .delete("/:user_id", verify, deleteOne)
+  // .delete("/:user_id", verify, deleteOne)
   .patch("/:user_id", verify, update);
 
 module.exports = userRouter;
