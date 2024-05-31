@@ -10,7 +10,7 @@ module.exports = {
           try {
             bcrypt.hash(req.body.password, 10, async (err, hash) => {
               if (err) {
-                logger.error(req.body);
+                logger.error(err);
                 return res.status(500).json({
                   status: err.name,
                   message: err.message,

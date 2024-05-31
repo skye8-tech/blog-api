@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       min: [8, "min of 8 characters"],
+      required: true,
     },
     savedPosts: [
       {
