@@ -13,7 +13,7 @@ userRouter
   .post("/create", create)
   .post("/auth/login", login)
   .get("/", verify, getAll)
-  .get("/:user_id", verify, getOne)
+  .get("/:user_id", getOne)
   // .delete("/:user_id", verify, deleteOne)
   .patch("/:user_id", verify, update);
 
