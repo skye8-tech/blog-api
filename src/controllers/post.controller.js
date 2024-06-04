@@ -26,7 +26,7 @@ module.exports = {
           try {
             const post = new Post({
               ...req.body,
-              authorId: user._id,
+              authorId: user?._id ?? user?.id,
               attachment: image,
             });
             await post
@@ -35,6 +35,7 @@ module.exports = {
                 return res.status(201).json(result);
               })
               .catch((err) => {
+                logger.error(err);
                 return res.status(501).json(err);
               });
           } catch (error) {
