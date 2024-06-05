@@ -16,8 +16,8 @@ commentRouter
   .post("/create", verify, create)
   .put("/like/:comment_id", verify, likeComment)
   .delete("/like/:comment_id", verify, deleteLikedComment)
-  .get("/", verify, getAll)
-  .get("/:comment_id", verify, getOne)
+  .get("/", getAll)
+  .get("/:comment_id", getOne)
   .delete("/:comment_id", verify, deleteOne)
   .patch("/:comment_id", verify, update);
 
